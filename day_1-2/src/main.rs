@@ -68,9 +68,13 @@ fn collect_digits(line: &String) -> i32 {
     
     let re_backward = Regex::new(r"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin").unwrap();
 
-    let first = conv_digit(re_forward.find(line.as_str()).unwrap().as_str()).unwrap();
+    let match_forward = re_forward.find(line.as_str()).unwrap().as_str();
 
-    let last = conv_digit(re_backward.find(line_reversed.as_str()).unwrap().as_str()).unwrap();
+    let match_backward = re_backward.find(line_reversed.as_str()).unwrap().as_str();
+
+    let first = conv_digit(match_forward).unwrap();
+
+    let last = conv_digit(match_backward).unwrap();
 
     let number = format!("{}{}", first, last);
 
